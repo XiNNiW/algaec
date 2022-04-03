@@ -19,7 +19,7 @@ START_TEST (biquad_lowpass_does_not_explode){
 
     filter_in = algae__biquad.lowpass(220.0,0.5,41000.0);
 
-    input = noise_block();
+    input = algae__noise.noise_block();
     for(size_t i = 0; i<BLOCKSIZE; i++){
         ck_assert_float_gt(input.samples[i],-1.0001);
         ck_assert_float_lt(input.samples[i],1.0001);
