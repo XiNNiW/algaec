@@ -1,27 +1,32 @@
 #include <check.h>
 #include <stdlib.h>
+#define SYSTEM_H "system_computer.h"
 #include "biquad.h"
+#include "noise.h"
 
 
-// START_TEST (biquad_lowpass_does_not_explode){
+START_TEST (biquad_lowpass_does_not_explode){
     
-//     biquad_t filter;
-//     AudioBlock input;
-//     AudioBlock output;
+    biquad_t filter_in;
+    biquad_t filter_out;
+    audio_block_t input;
+    audio_block_t output;
 
-//     filter = lowpass(220,0.5,48000);
+    filter_in = algae__biquad.lowpass(220.0,0.5,41000.0);
 
-//     for(int i = 0; i<BLOCKSIZE; i++){
-//         input[i] = noise<double>();
-//     }
+    input = noise_block();
+    for(size_t i = 0; i<BLOCKSIZE; i++){
+        ck_assert_float_gt(input.samples[i],-1.0001);
+        ck_assert_float_lt(input.samples[i],1.0001);
+    }
 
-//     std::tie(filter,output) = process<double>(filter,input);
+    algae__biquad.process_block(&filter_out,&filter_in,&output,&input);
 
-//     for(int i = 0; i<BLOCKSIZE; i++){
-//         EXPECT_GT(output[i],-1.0001);
-//         EXPECT_LT(output[i],1.0001);
-//     }
-// }
+    for(size_t i = 0; i<BLOCKSIZE; i++){
+        ck_assert_float_gt(output.samples[i],-1.0001);
+        ck_assert_float_lt(output.samples[i],1.0001);
+    }
+}
 
 START_TEST (biquad_lowpass_computes_coefficients)
 {
@@ -57,6 +62,7 @@ Suite *biquad_suite(void) {
     tc_core = tcase_create("Core");
 
     tcase_add_test(tc_core, biquad_lowpass_computes_coefficients);
+    tcase_add_test(tc_core, biquad_lowpass_does_not_explode);
     suite_add_tcase(s, tc_core); 
 
     return s;
