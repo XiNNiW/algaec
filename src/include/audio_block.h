@@ -3,7 +3,7 @@
 #include SYSTEM_H
 
 typedef struct audio_block_t {
-    SAMPLE samples[BLOCKSIZE];
+    sample_t samples[BLOCKSIZE];
 } audio_block_t;
 
 static audio_block_t algae__audio_block__empty() {
@@ -14,7 +14,7 @@ static audio_block_t algae__audio_block__empty() {
     return out;
 }
 
-static SAMPLE algae__audio_block__get(audio_block_t* block, size_t index){
+static sample_t algae__audio_block__get(audio_block_t* block, size_t index){
     return block->samples[index];
 }
 
@@ -52,7 +52,7 @@ static audio_block_t algae__audio_block__sub(audio_block_t* lhs, audio_block_t* 
 
 static const struct { 
   audio_block_t (* const empty)();
-  SAMPLE (* const get)(audio_block_t* block, size_t index);
+  sample_t (* const get)(audio_block_t* block, size_t index);
   audio_block_t (* const mult)(audio_block_t* lhs, audio_block_t* rhs);
   audio_block_t (* const div)(audio_block_t* lhs, audio_block_t* rhs);
   audio_block_t (* const add)(audio_block_t* lhs, audio_block_t* rhs);

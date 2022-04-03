@@ -4,8 +4,8 @@
 #include <math.h>
 #include "audio_block.h"
 
-static SAMPLE noise(){
-    return  2.0 * (( (SAMPLE) rand() /  (SAMPLE) (RAND_MAX)) - 0.5);
+static sample_t noise(){
+    return  2.0 * (( (sample_t) rand() /  (sample_t) (RAND_MAX)) - 0.5);
 }
 
 static audio_block_t noise_block(){

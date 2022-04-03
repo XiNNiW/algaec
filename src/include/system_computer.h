@@ -3,7 +3,7 @@
 #define BLOCKSIZE 64
 #define TWO_PI 6.28318530718
 
-typedef double SAMPLE;
-typedef double FREQUENCY;
+typedef double sample_t;
+typedef double frequency_t;
 
 #endif
