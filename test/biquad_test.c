@@ -1,17 +1,12 @@
 #include <check.h>
 #include <stdlib.h>
-#ifndef SYSTEM_H
-#define SYSTEM_H "system_double.h"
-#endif
-
-
+#include "type_macros.h"
+#define BLOCKSIZE 64
+DefineAlgaeSystemTypes(double,double)
 #include "biquad.h"
 #include "noise.h"
 
-
-
 START_TEST (biquad_lowpass_does_not_explode){
-    
     biquad_t filter_in;
     biquad_t filter_out;
     audio_block_t input;

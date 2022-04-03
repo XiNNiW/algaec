@@ -2,6 +2,7 @@
 #define NOISE_H
 
 #include <math.h>
+#include "type_defaults.h"
 #include "audio_block.h"
 
 static sample_t algae__rand(){

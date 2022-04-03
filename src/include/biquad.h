@@ -1,7 +1,9 @@
 #ifndef BIQUAD_H
 #define BIQUAD_H
 
+#include "type_defaults.h"
 #include "audio_block.h"
+#include "constants.h"
 
 typedef struct biquad_t { 
     sample_t b0, b1, b2, a1, a2; 

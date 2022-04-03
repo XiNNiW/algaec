@@ -1,6 +1,8 @@
 #ifndef AUDIO_BLOCK_H
 #define AUDIO_BLOCK_H
-#include SYSTEM_H
+
+#include "type_defaults.h"
+
 
 typedef struct audio_block_t {
     sample_t samples[BLOCKSIZE];
