@@ -3,10 +3,25 @@
 
 #include "audio_block.h"
 
-typedef struct biquad_t {
-    sample_t b0, b1, b2, a1, a2;
-    sample_t y1, y2, x1, x2;
-} biquad_t;
+// #ifndef SAMPLE_T
+// #define SAMPLE_T
+// typedef double sample_t
+// #endif
+// #ifndef FREQUENCY_T
+// #define FREQUENCY_T
+// typedef double frequency_t
+// #endif
+
+// #define DefineBiquadT(sample_t, frequency_t)\
+typedef struct biquad_t { \
+    sample_t b0, b1, b2, a1, a2; \
+    sample_t y1, y2, x1, x2; \
+} biquad_t; 
+
+typedef struct biquad_t { 
+    sample_t b0, b1, b2, a1, a2; 
+    sample_t y1, y2, x1, x2; 
+} biquad_t; 
 
 static biquad_t algae__biquad_lowpass(
     frequency_t cutoff,
