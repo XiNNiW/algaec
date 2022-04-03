@@ -1,6 +1,27 @@
 #include <check.h>
 #include <stdlib.h>
-#include "../src/include/biquad.h"
+#include "biquad.h"
+
+
+// START_TEST (biquad_lowpass_does_not_explode){
+    
+//     biquad_t filter;
+//     AudioBlock input;
+//     AudioBlock output;
+
+//     filter = lowpass(220,0.5,48000);
+
+//     for(int i = 0; i<BLOCKSIZE; i++){
+//         input[i] = noise<double>();
+//     }
+
+//     std::tie(filter,output) = process<double>(filter,input);
+
+//     for(int i = 0; i<BLOCKSIZE; i++){
+//         EXPECT_GT(output[i],-1.0001);
+//         EXPECT_LT(output[i],1.0001);
+//     }
+// }
 
 START_TEST (biquad_lowpass_computes_coefficients)
 {
@@ -16,7 +37,7 @@ START_TEST (biquad_lowpass_computes_coefficients)
     a2 = 0.9440238693044798
     */
     biquad_t filter;
-    filter = lowpass(220, 0.5, 48000);
+    filter = algae__biquad.lowpass(220, 0.5, 48000);
     float epsilon = 0.000001;
     ck_assert_float_eq_tol( -1.943217815176137, filter.a1,  epsilon);
     ck_assert_float_eq_tol( 0.9440238693044798 , filter.a2,  epsilon);
