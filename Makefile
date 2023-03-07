@@ -24,7 +24,7 @@ INCLUDES := $(wildcard $(SRC)/include)
 OBJECTS  := $(SOURCES:$(SRC)/%.c=$(OBJ)/%.o)
 
 TEST_SOURCES := $(wildcard $(TEST_SRC)/*.c)
-TEST_INCLUDES := $(INCLUDES)
+TEST_INCLUDES := $(INCLUDES) 
 TEST_OBJECTS := $(TEST_SOURCES:$(TEST_SRC)/%.c=$(TEST_OBJ)/%.o)
 
 #compiler and settings

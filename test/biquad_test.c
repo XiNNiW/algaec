@@ -8,7 +8,6 @@ DefineAlgaeSystemTypes(double,double)
 
 START_TEST (biquad_lowpass_does_not_explode){
     biquad_t filter_in;
-    biquad_t filter_out;
     audio_block_t input;
     audio_block_t output;
 
@@ -20,7 +19,7 @@ START_TEST (biquad_lowpass_does_not_explode){
         ck_assert_float_lt(input.samples[i],1.0001);
     }
 
-    algae__biquad.process_block(&filter_out,&filter_in,&output,&input);
+    algae__biquad.process_block(&filter_in,&filter_in,&output,&input);
 
     for(size_t i = 0; i<BLOCKSIZE; i++){
         ck_assert_float_gt(output.samples[i],-1.0001);
@@ -49,7 +48,6 @@ START_TEST (biquad_lowpass_computes_coefficients)
     ck_assert_float_eq_tol( 0.00020151353208571057 , filter.b0,  epsilon);
     ck_assert_float_eq_tol( 0.00040302706417142114 , filter.b1,  epsilon);
     ck_assert_float_eq_tol( 0.00020151353208571057 , filter.b2,  epsilon);
-
    
 }
 END_TEST
